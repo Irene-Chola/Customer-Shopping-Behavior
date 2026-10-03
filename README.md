@@ -39,11 +39,11 @@ The data is cleaned and prepared in Python, analyzed with ten SQL queries in MyS
 ---
 
 ## Project Assets
-1. Python Notebook (data cleaning and preparation)
-2. Python Script (the same steps as a runnable script)
-3. MySQL Database and SQL Queries
-4. Power BI Dashboard
-5. Summary Report (PDF)
+1. [Python Notebook](Customer%20Shopping%20Behavior.ipynb) (data cleaning and preparation)
+2. MySQL Database and SQL Queries
+3. Power BI Dashboard ([screenshot](Dashboard.PNG))
+4. [Summary Report (PDF)](Customer_Shopping_Behavior_Report.final.pdf)
+5. [Presentation (PDF)](Customer%20Shopping%20Behavior.presentation.pdf)
 
 ### Prerequisites
 - Python 3.9+ with `pandas`, `sqlalchemy` and `pymysql`
@@ -56,7 +56,7 @@ The data is cleaned and prepared in Python, analyzed with ten SQL queries in MyS
 ### Key Features
 
 - **End-to-End Workflow**: Takes raw data through cleaning in Python, analysis in SQL and visualization in Power BI
-- **Reproducible Data Preparation**: A documented notebook and an equivalent script, with the database password requested at a prompt and never stored in code
+- **Reproducible Data Preparation**: A documented notebook, with the database password requested at a prompt and never stored in code
 - **Ten Business Questions Answered**: SQL queries covering revenue, discounts, ratings, shipping, subscriptions, customer segments and age groups
 - **Interactive Dashboard**: Slicers and click-to-filter charts let anyone explore the data without writing a query
 
@@ -73,20 +73,20 @@ The data is cleaned and prepared in Python, analyzed with ten SQL queries in MyS
 └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
-![Project Workflow](docs/architecture.png)
+![Project Workflow](architecture.png)
 
 ---
 
 ## Repository Structure
 
 ```
-customer-shopping-behavior-analysis/
-├── data/          Raw dataset goes here (not included)
-├── notebooks/     Documented Jupyter notebook for data preparation
-├── scripts/       customer_behavior_prep.py, the same steps as a runnable script
-├── sql/           Queries answering the ten business questions
-├── docs/          Architecture diagram and dashboard screenshot
-└── reports/       Summary report (PDF)
+Customer-Shopping-Behavior/
+├── Customer Shopping Behavior.ipynb                Documented notebook for data preparation
+├── Customer_Shopping_Behavior_Report.final.pdf     Summary report
+├── Customer Shopping Behavior.presentation.pdf     Presentation
+├── Dashboard.PNG                                   Power BI dashboard screenshot
+├── architecture.png                                Project workflow diagram
+└── README.md
 ```
 
 ---
@@ -105,12 +105,12 @@ The dataset contains **3,900 purchases** and **18 columns**, grouped into three 
 #### 1. **Missing Values**
 - **Issue**: 37 missing values in `review_rating` (3,863 of 3,900 present)
 - **Fix**: Each gap is filled with the median rating of its own product category, not the overall median
-- **Implementation**: [Data Preparation Notebook](notebooks/customer_shopping_behavior_cleaning.ipynb)
+- **Implementation**: [Data Preparation Notebook](Customer%20Shopping%20Behavior.ipynb)
 
 #### 2. **Standardized Column Names**
 - **Issue**: Mixed upper and lower case, spaces and brackets make Python and SQL work error-prone
 - **Fix**: Every name is converted to lower snake case, and `purchase_amount_(usd)` becomes `purchase_amount`
-- **Implementation**: [Data Preparation Script](scripts/customer_behavior_prep.py)
+- **Implementation**: [Data Preparation Notebook](Customer%20Shopping%20Behavior.ipynb)
 
 #### 3. **Engineered Features**
 - **`age_group`**: Ages split into four quartile-based groups (Young Adults, Adults, Middle-aged, Seniors), so each group holds roughly a quarter of the customers
@@ -126,25 +126,19 @@ The dataset contains **3,900 purchases** and **18 columns**, grouped into three 
 1. **Set Up the Environment**:
    - Install the libraries: `pip install pandas sqlalchemy pymysql`
    - Create a MySQL database named `customer_behavior`
-   - Place the raw `customer_shopping_behavior.csv` file in the `data/` folder
+   - Save the raw `customer_shopping_behavior.csv` file in the same folder as the notebook
 
 2. **Data Preparation**:
-   - Open the [notebook](Customer Shopping Behavior.ipynb) to follow each step, or run the script:
-   ```bash
-   python scripts/customer_behavior_prep.py --csv data/customer_shopping_behavior.csv --skip-db
-   ```
-   - Review the cleaned file the script saves
+   - Open the [notebook](Customer%20Shopping%20Behavior.ipynb) in Jupyter and run the cells from top to bottom
+   - The notebook fills missing ratings, standardizes column names, creates the new features and removes the duplicate column
 
 3. **Load Into MySQL**:
-   - Run the script without `--skip-db`. It asks for your MySQL password at the prompt:
-   ```bash
-   python scripts/customer_behavior_prep.py --csv data/customer_shopping_behavior.csv
-   ```
+   - Run the final cells of the notebook. The connection asks for your MySQL password at the prompt
    - The cleaned data is written to the `customer_shopping_behavior` table (3,900 rows)
 
 4. **SQL Analysis**:
-   - Open [analysis_queries.sql](sql/analysis_queries.sql) in MySQL Workbench
-   - Run each query to answer the ten business questions
+   - Open MySQL Workbench and run the ten queries against the `customer_shopping_behavior` table
+   - The results for each query are shown in the [summary report](Customer_Shopping_Behavior_Report.final.pdf)
 
 5. **Dashboard Deployment**:
    - Connect Power BI Desktop to your MySQL database
