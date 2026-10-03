@@ -73,7 +73,7 @@ The data is cleaned and prepared in Python, analyzed with ten SQL queries in MyS
 └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
-![Project Workflow](Project Architecture Diagram.PNG)
+![Project Workflow](architecture.png)
 
 ---
 
