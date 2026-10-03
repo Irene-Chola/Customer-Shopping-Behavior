@@ -129,7 +129,7 @@ The dataset contains **3,900 purchases** and **18 columns**, grouped into three 
    - Place the raw `customer_shopping_behavior.csv` file in the `data/` folder
 
 2. **Data Preparation**:
-   - Open the [notebook](notebooks/customer_shopping_behavior_cleaning.ipynb) to follow each step, or run the script:
+   - Open the [notebook](Customer Shopping Behavior.ipynb) to follow each step, or run the script:
    ```bash
    python scripts/customer_behavior_prep.py --csv data/customer_shopping_behavior.csv --skip-db
    ```
@@ -162,7 +162,7 @@ The dataset contains **3,900 purchases** and **18 columns**, grouped into three 
 
 ### Dashboard Screenshots
 
-![Customer Behavior Dashboard](docs/dashboard.png)
+![Customer Behavior Dashboard](Dashboard.PNG)
 
 *Interactive dashboard showing spending, subscription, category and age group insights*
 
