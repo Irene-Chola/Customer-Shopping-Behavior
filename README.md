@@ -63,16 +63,6 @@ The data is cleaned and prepared in Python, analyzed with ten SQL queries in MyS
 ---
 ## Architecture
 
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   Data Source   │     │   Preparation   │     │    Analysis     │     │  Visualization  │
-│                 │     │                 │     │                 │     │                 │
-│ • Customer CSV  │───▶ │ Python (Pandas) │───▶ │ MySQL Database  │───▶│     Power BI    │
-│ • 3,900 rows    │     │ Clean & Engineer│     │ 10 SQL Queries  │     │    Dashboard    │
-│ • 18 columns    │     │    Features     │     │                 │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
-```
-
 ![Project Workflow](architecture.png)
 
 ---
